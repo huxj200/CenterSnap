@@ -1,0 +1,180 @@
+2022-11-17 19:33:03,889 INFO    MainThread:18052 [internal.py:wandb_internal():88] W&B internal server running at pid: 18052, started at: 2022-11-17 19:33:03.879956
+2022-11-17 19:33:03,893 INFO    WriterThread:18052 [datastore.py:open_for_write():80] open: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\run-1mkrsmb5.wandb
+2022-11-17 19:33:03,894 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: check_version
+2022-11-17 19:33:03,900 DEBUG   SenderThread:18052 [sender.py:send():179] send: header
+2022-11-17 19:33:03,900 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: check_version
+2022-11-17 19:33:04,778 DEBUG   SenderThread:18052 [sender.py:send():179] send: run
+2022-11-17 19:33:05,857 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: run_start
+2022-11-17 19:33:05,859 INFO    SenderThread:18052 [dir_watcher.py:__init__():168] watching files in: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files
+2022-11-17 19:33:05,859 INFO    SenderThread:18052 [sender.py:_start_run_threads():716] run started: 1mkrsmb5 with start time 1668684782
+2022-11-17 19:33:05,859 DEBUG   SenderThread:18052 [sender.py:send():179] send: summary
+2022-11-17 19:33:05,860 INFO    SenderThread:18052 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2022-11-17 19:33:06,869 INFO    Thread-17 :18052 [dir_watcher.py:_on_file_created():216] file/dir created: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\wandb-summary.json
+2022-11-17 19:33:07,043 DEBUG   HandlerThread:18052 [meta.py:__init__():39] meta init
+2022-11-17 19:33:07,044 DEBUG   HandlerThread:18052 [meta.py:__init__():53] meta init done
+2022-11-17 19:33:07,044 DEBUG   HandlerThread:18052 [meta.py:probe():210] probe
+2022-11-17 19:33:07,057 DEBUG   HandlerThread:18052 [meta.py:_setup_git():200] setup git
+2022-11-17 19:33:07,157 DEBUG   HandlerThread:18052 [meta.py:_setup_git():207] setup git done
+2022-11-17 19:33:07,157 DEBUG   HandlerThread:18052 [meta.py:_save_pip():57] save pip
+2022-11-17 19:33:07,159 DEBUG   HandlerThread:18052 [meta.py:_save_pip():71] save pip done
+2022-11-17 19:33:07,159 DEBUG   HandlerThread:18052 [meta.py:_save_conda():78] save conda
+2022-11-17 19:33:07,878 INFO    Thread-17 :18052 [dir_watcher.py:_on_file_created():216] file/dir created: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\requirements.txt
+2022-11-17 19:33:07,879 INFO    Thread-17 :18052 [dir_watcher.py:_on_file_created():216] file/dir created: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\conda-environment.yaml
+2022-11-17 19:33:10,910 INFO    Thread-17 :18052 [dir_watcher.py:_on_file_created():216] file/dir created: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\output.log
+2022-11-17 19:33:15,839 DEBUG   HandlerThread:18052 [meta.py:_save_conda():86] save conda done
+2022-11-17 19:33:15,839 DEBUG   HandlerThread:18052 [meta.py:probe():252] probe done
+2022-11-17 19:33:15,963 INFO    Thread-17 :18052 [dir_watcher.py:_on_file_modified():229] file/dir modified: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\conda-environment.yaml
+2022-11-17 19:33:15,964 INFO    Thread-17 :18052 [dir_watcher.py:_on_file_created():216] file/dir created: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\wandb-metadata.json
+2022-11-17 19:33:16,246 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: stop_status
+2022-11-17 19:33:16,246 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: stop_status
+2022-11-17 19:33:16,808 DEBUG   SenderThread:18052 [sender.py:send():179] send: files
+2022-11-17 19:33:16,808 INFO    SenderThread:18052 [sender.py:_save_file():841] saving file wandb-metadata.json with policy now
+2022-11-17 19:33:16,967 INFO    Thread-17 :18052 [dir_watcher.py:_on_file_modified():229] file/dir modified: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\output.log
+2022-11-17 19:33:18,176 INFO    Thread-22 :18052 [upload_job.py:push():137] Uploaded file C:\Users\hu\AppData\Local\Temp\tmp7_jpoezswandb\2q93ozv2-wandb-metadata.json
+2022-11-17 19:33:31,821 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: stop_status
+2022-11-17 19:33:31,822 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: stop_status
+2022-11-17 19:33:40,716 DEBUG   SenderThread:18052 [sender.py:send():179] send: stats
+2022-11-17 19:33:47,399 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: stop_status
+2022-11-17 19:33:47,399 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: stop_status
+2022-11-17 19:34:02,964 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: stop_status
+2022-11-17 19:34:02,965 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: stop_status
+2022-11-17 19:34:14,015 DEBUG   SenderThread:18052 [sender.py:send():179] send: stats
+2022-11-17 19:34:18,528 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: stop_status
+2022-11-17 19:34:18,529 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: stop_status
+2022-11-17 19:34:34,112 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: stop_status
+2022-11-17 19:34:34,113 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: stop_status
+2022-11-17 19:34:47,310 DEBUG   SenderThread:18052 [sender.py:send():179] send: stats
+2022-11-17 19:34:49,689 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: stop_status
+2022-11-17 19:34:49,690 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: stop_status
+2022-11-17 19:34:57,071 WARNING MainThread:18052 [internal.py:wandb_internal():147] Internal process interrupt: 1
+2022-11-17 19:34:57,664 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:57,664 DEBUG   SenderThread:18052 [sender.py:send():179] send: telemetry
+2022-11-17 19:34:57,665 DEBUG   SenderThread:18052 [sender.py:send():179] send: exit
+2022-11-17 19:34:57,666 INFO    SenderThread:18052 [sender.py:send_exit():287] handling exit code: 0
+2022-11-17 19:34:57,666 INFO    SenderThread:18052 [sender.py:send_exit():295] send defer
+2022-11-17 19:34:57,667 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:34:57,668 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: defer
+2022-11-17 19:34:57,668 INFO    HandlerThread:18052 [handler.py:handle_request_defer():141] handle defer: 0
+2022-11-17 19:34:57,668 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: defer
+2022-11-17 19:34:57,669 INFO    SenderThread:18052 [sender.py:send_request_defer():304] handle sender defer: 0
+2022-11-17 19:34:57,669 INFO    SenderThread:18052 [sender.py:transition_state():308] send defer: 1
+2022-11-17 19:34:57,670 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: defer
+2022-11-17 19:34:57,670 INFO    HandlerThread:18052 [handler.py:handle_request_defer():141] handle defer: 1
+2022-11-17 19:34:57,783 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:57,783 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: defer
+2022-11-17 19:34:57,784 INFO    SenderThread:18052 [sender.py:send_request_defer():304] handle sender defer: 1
+2022-11-17 19:34:57,784 INFO    SenderThread:18052 [sender.py:transition_state():308] send defer: 2
+2022-11-17 19:34:57,784 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:34:57,784 DEBUG   SenderThread:18052 [sender.py:send():179] send: stats
+2022-11-17 19:34:57,785 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: defer
+2022-11-17 19:34:57,785 INFO    HandlerThread:18052 [handler.py:handle_request_defer():141] handle defer: 2
+2022-11-17 19:34:57,786 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: defer
+2022-11-17 19:34:57,786 INFO    SenderThread:18052 [sender.py:send_request_defer():304] handle sender defer: 2
+2022-11-17 19:34:57,786 INFO    SenderThread:18052 [sender.py:transition_state():308] send defer: 3
+2022-11-17 19:34:57,787 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: defer
+2022-11-17 19:34:57,787 INFO    HandlerThread:18052 [handler.py:handle_request_defer():141] handle defer: 3
+2022-11-17 19:34:57,787 DEBUG   SenderThread:18052 [sender.py:send():179] send: summary
+2022-11-17 19:34:57,787 INFO    SenderThread:18052 [sender.py:_save_file():841] saving file wandb-summary.json with policy end
+2022-11-17 19:34:57,788 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: defer
+2022-11-17 19:34:57,788 INFO    SenderThread:18052 [sender.py:send_request_defer():304] handle sender defer: 3
+2022-11-17 19:34:57,788 INFO    SenderThread:18052 [sender.py:transition_state():308] send defer: 4
+2022-11-17 19:34:57,789 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: defer
+2022-11-17 19:34:57,789 INFO    HandlerThread:18052 [handler.py:handle_request_defer():141] handle defer: 4
+2022-11-17 19:34:57,789 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: defer
+2022-11-17 19:34:57,789 INFO    SenderThread:18052 [sender.py:send_request_defer():304] handle sender defer: 4
+2022-11-17 19:34:57,890 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:57,907 INFO    Thread-17 :18052 [dir_watcher.py:_on_file_modified():229] file/dir modified: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\output.log
+2022-11-17 19:34:57,907 INFO    Thread-17 :18052 [dir_watcher.py:_on_file_modified():229] file/dir modified: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\wandb-summary.json
+2022-11-17 19:34:58,407 INFO    SenderThread:18052 [sender.py:transition_state():308] send defer: 5
+2022-11-17 19:34:58,407 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:34:58,408 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: defer
+2022-11-17 19:34:58,408 INFO    HandlerThread:18052 [handler.py:handle_request_defer():141] handle defer: 5
+2022-11-17 19:34:58,408 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: defer
+2022-11-17 19:34:58,409 INFO    SenderThread:18052 [sender.py:send_request_defer():304] handle sender defer: 5
+2022-11-17 19:34:58,409 INFO    SenderThread:18052 [dir_watcher.py:finish():282] shutting down directory watcher
+2022-11-17 19:34:58,515 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:58,918 INFO    SenderThread:18052 [dir_watcher.py:_on_file_modified():229] file/dir modified: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\config.yaml
+2022-11-17 19:34:58,919 INFO    SenderThread:18052 [dir_watcher.py:finish():312] scan: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files
+2022-11-17 19:34:58,919 INFO    SenderThread:18052 [dir_watcher.py:finish():318] scan save: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\conda-environment.yaml conda-environment.yaml
+2022-11-17 19:34:58,920 INFO    SenderThread:18052 [dir_watcher.py:finish():318] scan save: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\config.yaml config.yaml
+2022-11-17 19:34:58,921 INFO    SenderThread:18052 [dir_watcher.py:finish():318] scan save: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\output.log output.log
+2022-11-17 19:34:58,931 INFO    SenderThread:18052 [dir_watcher.py:finish():318] scan save: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\requirements.txt requirements.txt
+2022-11-17 19:34:58,949 INFO    SenderThread:18052 [dir_watcher.py:finish():318] scan save: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\wandb-metadata.json wandb-metadata.json
+2022-11-17 19:34:58,952 INFO    SenderThread:18052 [dir_watcher.py:finish():318] scan save: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\wandb-summary.json wandb-summary.json
+2022-11-17 19:34:58,964 INFO    SenderThread:18052 [sender.py:transition_state():308] send defer: 6
+2022-11-17 19:34:58,965 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:34:58,969 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: defer
+2022-11-17 19:34:58,970 INFO    HandlerThread:18052 [handler.py:handle_request_defer():141] handle defer: 6
+2022-11-17 19:34:58,977 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: defer
+2022-11-17 19:34:58,977 INFO    SenderThread:18052 [sender.py:send_request_defer():304] handle sender defer: 6
+2022-11-17 19:34:58,980 INFO    SenderThread:18052 [file_pusher.py:finish():177] shutting down file pusher
+2022-11-17 19:34:59,077 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:59,077 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:34:59,187 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:59,188 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:34:59,299 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:59,299 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:34:59,410 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:59,410 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:34:59,518 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:59,518 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:34:59,627 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:59,628 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:34:59,736 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:59,736 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:34:59,847 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:59,847 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:34:59,955 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:34:59,956 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:35:00,067 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:35:00,068 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:35:00,177 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:35:00,178 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:35:00,285 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:35:00,285 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:35:00,395 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:35:00,396 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:35:00,504 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:35:00,505 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:35:00,612 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:35:00,612 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:35:00,619 INFO    Thread-24 :18052 [upload_job.py:push():137] Uploaded file D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\config.yaml
+2022-11-17 19:35:00,623 INFO    Thread-23 :18052 [upload_job.py:push():137] Uploaded file D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\conda-environment.yaml
+2022-11-17 19:35:00,635 INFO    Thread-27 :18052 [upload_job.py:push():137] Uploaded file D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\wandb-summary.json
+2022-11-17 19:35:00,640 INFO    Thread-25 :18052 [upload_job.py:push():137] Uploaded file D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\output.log
+2022-11-17 19:35:00,652 INFO    Thread-26 :18052 [upload_job.py:push():137] Uploaded file D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\files\requirements.txt
+2022-11-17 19:35:00,719 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:35:00,720 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:35:00,828 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:35:00,829 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:35:00,859 INFO    Thread-16 :18052 [sender.py:transition_state():308] send defer: 7
+2022-11-17 19:35:00,860 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: defer
+2022-11-17 19:35:00,860 INFO    HandlerThread:18052 [handler.py:handle_request_defer():141] handle defer: 7
+2022-11-17 19:35:00,860 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: defer
+2022-11-17 19:35:00,861 INFO    SenderThread:18052 [sender.py:send_request_defer():304] handle sender defer: 7
+2022-11-17 19:35:00,937 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:35:01,403 INFO    SenderThread:18052 [sender.py:transition_state():308] send defer: 8
+2022-11-17 19:35:01,403 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:35:01,404 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: defer
+2022-11-17 19:35:01,404 INFO    HandlerThread:18052 [handler.py:handle_request_defer():141] handle defer: 8
+2022-11-17 19:35:01,404 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: defer
+2022-11-17 19:35:01,404 INFO    SenderThread:18052 [sender.py:send_request_defer():304] handle sender defer: 8
+2022-11-17 19:35:01,404 INFO    SenderThread:18052 [sender.py:transition_state():308] send defer: 9
+2022-11-17 19:35:01,405 DEBUG   SenderThread:18052 [sender.py:send():179] send: final
+2022-11-17 19:35:01,405 DEBUG   SenderThread:18052 [sender.py:send():179] send: footer
+2022-11-17 19:35:01,406 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: defer
+2022-11-17 19:35:01,406 INFO    HandlerThread:18052 [handler.py:handle_request_defer():141] handle defer: 9
+2022-11-17 19:35:01,406 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: defer
+2022-11-17 19:35:01,406 INFO    SenderThread:18052 [sender.py:send_request_defer():304] handle sender defer: 9
+2022-11-17 19:35:01,515 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: poll_exit
+2022-11-17 19:35:01,516 DEBUG   SenderThread:18052 [sender.py:send_request():193] send_request: poll_exit
+2022-11-17 19:35:01,516 INFO    SenderThread:18052 [file_pusher.py:join():182] waiting for file pusher
+2022-11-17 19:35:01,518 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: get_summary
+2022-11-17 19:35:01,518 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: sampled_history
+2022-11-17 19:35:01,519 DEBUG   HandlerThread:18052 [handler.py:handle_request():124] handle_request: shutdown
+2022-11-17 19:35:01,519 INFO    HandlerThread:18052 [handler.py:finish():658] shutting down handler
+2022-11-17 19:35:02,417 INFO    WriterThread:18052 [datastore.py:close():288] close: D:\projects\python\CenterSnap\external\shape_pretraining\wandb\run-20221117_193301-1mkrsmb5\run-1mkrsmb5.wandb
+2022-11-17 19:35:02,526 INFO    SenderThread:18052 [sender.py:finish():947] shutting down sender
+2022-11-17 19:35:02,526 INFO    SenderThread:18052 [file_pusher.py:finish():177] shutting down file pusher
+2022-11-17 19:35:02,526 INFO    SenderThread:18052 [file_pusher.py:join():182] waiting for file pusher
+2022-11-17 19:35:02,804 INFO    MainThread:18052 [internal.py:handle_exit():78] Internal process exited

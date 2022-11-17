@@ -1,0 +1,20 @@
+2022-11-17 19:33:15,677 : num_point: 2048
+2022-11-17 19:33:15,678 : emb_dim: 128
+2022-11-17 19:33:15,678 : h5_file: ../../data/obj_models/ShapeNetCore_2048.h5
+2022-11-17 19:33:15,684 : batch_size: 256
+2022-11-17 19:33:15,684 : num_workers: 1
+2022-11-17 19:33:15,684 : gpu: 0
+2022-11-17 19:33:15,685 : lr: 0.0001
+2022-11-17 19:33:15,685 : start_epoch: 1
+2022-11-17 19:33:15,685 : max_epoch: 50
+2022-11-17 19:33:15,685 : resume_model:
+2022-11-17 19:33:15,685 : result_dir: results/ae_2048
+2022-11-17 19:33:15,685 : repeat_epoch: 30
+2022-11-17 19:33:15,685 : decay_step: 5000
+2022-11-17 19:33:15,685 : decay_rate: [1.0, 0.6, 0.3, 0.1]
+Traceback (most recent call last):
+  File "D:/projects/python/CenterSnap/external/shape_pretraining/train_ae.py", line 110, in <module>
+    train_net()
+  File "D:/projects/python/CenterSnap/external/shape_pretraining/train_ae.py", line 48, in train_net
+    val_dataset = ShapeDataset(opt.h5_file, mode='val', augment=False)
+KeyboardInterrupt

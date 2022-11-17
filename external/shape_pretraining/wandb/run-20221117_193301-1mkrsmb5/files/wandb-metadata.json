@@ -1,0 +1,27 @@
+{
+    "os": "Windows-10-10.0.19044-SP0",
+    "python": "3.8.13",
+    "heartbeatAt": "2022-11-17T11:33:07.044271",
+    "startedAt": "2022-11-17T11:33:01.337329",
+    "docker": null,
+    "gpu": "NVIDIA GeForce GTX 1660 Ti",
+    "gpu_count": 1,
+    "cpu_count": 16,
+    "cuda": null,
+    "args": [
+        "--h5_file",
+        "../../data/obj_models/ShapeNetCore_2048.h5"
+    ],
+    "state": "running",
+    "program": "D:/projects/python/CenterSnap/external/shape_pretraining/train_ae.py",
+    "codePath": "external\\shape_pretraining\\train_ae.py",
+    "git": {
+        "remote": "https://github.com/huxj200/CenterSnap.git",
+        "commit": "52c61f3d3e6142cb56cd8d48bde4e10586543e76"
+    },
+    "email": "huxj1441105278@outlook.com",
+    "root": "D:/projects/python/CenterSnap",
+    "host": "DESKTOP-1DRQAVE",
+    "username": "hu",
+    "executable": "D:\\projects\\python\\work\\CenterSnap\\env\\python.exe"
+}
