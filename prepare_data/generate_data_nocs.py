@@ -17,6 +17,7 @@ from simnet.lib.depth_noise import DepthManager
 from simnet.lib.net.models.auto_encoder import PointCloudAE
 from PIL import Image
 import argparse
+from utils.get_scale_factors import get_scale_factors
 
 def create_img_list(data_dir):
     """ Create train/val/test data list for CAMERA and Real. """
@@ -105,23 +106,11 @@ def process_data(img_path, depth):
                 model_id = line_info[2]    # Real scanned objs
             else:
                 model_id = line_info[3]    # CAMERA objs
-            # remove one mug instance in CAMERA train due to improper model
-            if model_id == 'b9be7cfe653740eb7633a2dd89cec754' or model_id == 'd3b53f56b4a7b3b3c9f016d57db96408':
-                continue
+
             # process foreground objects
             inst_mask = np.equal(mask, inst_id)
-            # bounding box
-            horizontal_indicies = np.where(np.any(inst_mask, axis=0))[0]
-            vertical_indicies = np.where(np.any(inst_mask, axis=1))[0]
-            assert horizontal_indicies.shape[0], print(img_path)
-            x1, x2 = horizontal_indicies[[0, -1]]
-            y1, y2 = vertical_indicies[[0, -1]]
-            # x2 and y2 should not be part of the box. Increment by 1.
-            x2 += 1
-            y2 += 1
-            # object occupies full image, rendering error, happens in CAMERA dataset
-            if np.any(np.logical_or((x2-x1) > 600, (y2-y1) > 440)):
-                return None, None, None, None, None, None
+
+
             # not enough valid depth observation
             final_mask = np.logical_and(inst_mask, depth > 0)
             if np.sum(final_mask) < 64:
@@ -131,7 +120,7 @@ def process_data(img_path, depth):
             model_list.append(model_id)
             masks[:, :, i] = inst_mask
             coords[:, :, i, :] = np.multiply(coord_map, np.expand_dims(inst_mask, axis=-1))
-            bboxes[i] = np.array([y1, x1, y2, x2])
+
             i += 1
     # no valid foreground objects
     if i == 0:
@@ -139,7 +128,10 @@ def process_data(img_path, depth):
 
     masks = masks[:, :, :i]
     coords = np.clip(coords[:, :, :i, :], 0, 1)
-    bboxes = bboxes[:i, :]
+    label_full_path = img_path + '_label.pkl'
+    with open((label_full_path), 'rb') as f:
+        obj_scenes = cPickle.load(f)
+        bboxes = obj_scenes['bboxes']
 
     return masks, coords, class_ids, instance_ids, model_list, bboxes
 
@@ -200,7 +192,7 @@ def annotate_camera_train(data_dir, estimator):
         #get latent embeddings
         model_points = [obj_models[model_list[i]].astype(np.float32) for i in range(len(class_ids))]
         latent_embeddings = get_latent_embeddings(model_points, estimator)
-        #get poses 
+        #get poses
         abs_poses=[]
         seg_mask = np.zeros([_camera.height, _camera.width])
         masks_list = []
@@ -209,10 +201,10 @@ def annotate_camera_train(data_dir, estimator):
             T = translations[i]
             s = scales[i]
             sym_ids = [0, 1, 3]
-            cat_id = np.array(class_ids)[i] - 1 
+            cat_id = np.array(class_ids)[i] - 1
             if cat_id in sym_ids:
                 R = align_rotation(R)
-            
+
             scale_matrix = np.eye(4)
             scale_mat = s*np.eye(3, dtype=float)
             scale_matrix[0:3, 0:3] = scale_mat
@@ -248,7 +240,7 @@ def annotate_camera_train(data_dir, estimator):
 
 def annotate_real_train(data_dir, estimator):
 
-    DATASET_NAME = 'NOCS_Data'
+    DATASET_NAME = 'lm_Data'
     DATASET_DIR = pathlib.Path(f'data/{DATASET_NAME}')
     DATASET_DIR.mkdir(parents=True, exist_ok=True)
     _DATASET = datapoint.make_dataset(f'file://{DATASET_DIR}/Real/train')
@@ -258,16 +250,15 @@ def annotate_real_train(data_dir, estimator):
     real_train = open(os.path.join(data_dir, 'Real/train_list_all.txt')).read().splitlines()
     intrinsics = np.array([[591.0125, 0, 322.525], [0, 590.16775, 244.11084], [0, 0, 1]])
     # scale factors for all instances
-    scale_factors = {}
-    path_to_size = glob.glob(os.path.join(data_dir, 'obj_models/real_train', '*_norm.txt'))
-    for inst_path in sorted(path_to_size):
-        instance = os.path.basename(inst_path).split('.')[0]
-        bbox_dims = np.loadtxt(inst_path)
-        scale_factors[instance] = np.linalg.norm(bbox_dims)
-    # meta info for re-label mug category
-    with open(os.path.join(data_dir, 'obj_models/mug_meta.pkl'), 'rb') as f:
-        mug_meta = cPickle.load(f)
+    scale_factors = get_scale_factors(data_dir)
+    # path_to_size = glob.glob(os.path.join(data_dir, 'obj_models/real_train', '*_norm.txt'))
+    # for inst_path in sorted(path_to_size):
+    #     instance = os.path.basename(inst_path).split('.')[0]
+    #     bbox_dims = np.loadtxt(inst_path)
+    #     scale_factors[instance] = np.linalg.norm(bbox_dims)
     #TEST MODELS
+
+
     obj_model_dir = os.path.join(data_dir, 'obj_models')
     with open(os.path.join(obj_model_dir, 'real_train.pkl'), 'rb') as f:
         obj_models = cPickle.load(f)
@@ -280,7 +271,8 @@ def annotate_real_train(data_dir, estimator):
                     os.path.exists(img_full_path + '_coord.png') and \
                     os.path.exists(img_full_path + '_depth.png') and \
                     os.path.exists(img_full_path + '_mask.png') and \
-                    os.path.exists(img_full_path + '_meta.txt')
+                    os.path.exists(img_full_path + '_meta.txt') and \
+                    os.path.exists(img_full_path + '_label.pkl')
         if not all_exist:
             continue
         depth_full_path = img_full_path+'_depth.png'
@@ -288,40 +280,40 @@ def annotate_real_train(data_dir, estimator):
         masks, coords, class_ids, instance_ids, model_list, bboxes = process_data(img_full_path, depth)
         if instance_ids is None:
             continue
-        # compute pose
-        num_insts = len(class_ids)
-        scales = np.zeros(num_insts)
-        rotations = np.zeros((num_insts, 3, 3))
-        translations = np.zeros((num_insts, 3))
-        for i in range(num_insts):
-            s = scale_factors[model_list[i]]
-            mask = masks[:, :, i]
-            idxs = np.where(mask)
-            coord = coords[:, :, i, :]
-            coord_pts = s * (coord[idxs[0], idxs[1], :] - 0.5)
-            coord_pts = coord_pts[:, :, None]
-            img_pts = np.array([idxs[1], idxs[0]]).transpose()
-            img_pts = img_pts[:, :, None].astype(float)
-            distCoeffs = np.zeros((4, 1))    # no distoration
-            retval, rvec, tvec = cv2.solvePnP(coord_pts, img_pts, intrinsics, distCoeffs)
-            assert retval
-            R, _ = cv2.Rodrigues(rvec)
-            T = np.squeeze(tvec)
-            # re-label for mug category
-            if class_ids[i] == 6:
-                T0 = mug_meta[model_list[i]][0]
-                s0 = mug_meta[model_list[i]][1]
-                T = T - s * R @ T0
-                s = s / s0
-            scales[i] = s
-            rotations[i] = R
-            translations[i] = T
+
+        # for i in range(num_insts):
+        #     str1 = model_list[i]
+        #     g = int(str1[-2:])
+        #     s = scales[i]
+        #     mask = masks[:, :, i]
+        #     idxs = np.where(mask)
+        #     coord = coords[:, :, i, :]
+        #     coord_pts = s * (coord[idxs[0], idxs[1], :] - 0.5)
+        #     coord_pts = coord_pts[:, :, None]
+        #     img_pts = np.array([idxs[1], idxs[0]]).transpose()
+        #     img_pts = img_pts[:, :, None].astype(float)
+        #     distCoeffs = np.zeros((4, 1))    # no distoration
+        #     retval, rvec, tvec = cv2.solvePnP(coord_pts, img_pts, intrinsics, distCoeffs)
+        #     assert retval
+        #     R, _ = cv2.Rodrigues(rvec)
+        #     T = np.squeeze(tvec)
+        #     scales[i] = s
+        #     rotations[i] = R
+        #     translations[i] = T
+        label_full_path = img_full_path+'_label.pkl'
+        with open((label_full_path), 'rb') as f:
+            obj_scenes = cPickle.load(f)
+
+            scales = obj_scenes['scales']
+            rotations = obj_scenes['rotations']
+            translations = obj_scenes['translations']
+
 
         ### GET CENTERPOINT DATAPOINTS
         #get latent embeddings
         model_points = [obj_models[model_list[i]].astype(np.float32) for i in range(len(class_ids))]
         latent_embeddings = get_latent_embeddings(model_points, estimator)
-        #get poses 
+        #get poses
         abs_poses=[]
         class_num=1
         seg_mask = np.zeros([_camera.height, _camera.width])
@@ -331,7 +323,7 @@ def annotate_real_train(data_dir, estimator):
             T = translations[i]
             s = scales[i]
             sym_ids = [0, 1, 3]
-            cat_id = np.array(class_ids)[i] - 1 
+            cat_id = np.array(class_ids)[i] - 1
             if cat_id in sym_ids:
                 R = align_rotation(R)
             scale_matrix = np.eye(4)
@@ -375,7 +367,7 @@ def annotate_test_data(data_dir, estimator, source, subset):
     DATASET_DIR = pathlib.Path(f'data/{DATASET_NAME}')
     DATASET_DIR.mkdir(parents=True, exist_ok=True)
     _DATASET = datapoint.make_dataset(f'file://{DATASET_DIR}/{source}/{subset}')
-    
+
     _camera = camera.NOCS_Real()
     camera_val = open(os.path.join(data_dir, 'CAMERA', 'val_list_all.txt')).read().splitlines()
     real_test = open(os.path.join(data_dir, 'Real', 'test_list_all.txt')).read().splitlines()
@@ -398,7 +390,7 @@ def annotate_test_data(data_dir, estimator, source, subset):
     # obj_model_dir = os.path.join(data_dir, 'obj_models')
     # with open(os.path.join(obj_model_dir, 'real_test.pkl'), 'rb') as f:
     #     obj_models = cPickle.load(f)
-    
+
     if source == 'CAMERA':
         subset_meta = [('CAMERA', camera_val, camera_intrinsics, 'val')]
     else:
@@ -485,7 +477,7 @@ def annotate_test_data(data_dir, estimator, source, subset):
             #get latent embeddings
             model_points = [models[model_list[i]].astype(np.float32) for i in range(len(class_ids))]
             latent_embeddings = get_latent_embeddings(model_points, estimator)
-            #get poses 
+            #get poses
             abs_poses=[]
             class_num=1
             seg_mask = np.zeros([_camera.height, _camera.width])
@@ -495,7 +487,7 @@ def annotate_test_data(data_dir, estimator, source, subset):
                 T = translations[i]
                 s = scales[i]
                 sym_ids = [0, 1, 3]
-                cat_id = np.array(class_ids)[i] - 1 
+                cat_id = np.array(class_ids)[i] - 1
                 if cat_id in sym_ids:
                     R = align_rotation(R)
                 scale_matrix = np.eye(4)
@@ -539,29 +531,30 @@ def get_latent_embeddings(point_clouds, estimator):
 
 if __name__ == '__main__':
 
-  parser = argparse.ArgumentParser()
-  parser.add_argument('--data_dir', type=str, required=True)
-  args = parser.parse_args()
-  data_dir = args.data_dir
+    os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--data_dir', type=str, required=True)
+    args = parser.parse_args()
+    data_dir = args.data_dir
 
-  emb_dim = 128
-  n_cat = 57
-  n_pts = 2048
+    emb_dim = 128
+    n_cat = 57
+    n_pts = 2048
 
-  model_path = os.path.join(data_dir, 'auto_encoder_model', 'model_50_nocs.pth')
-  estimator = PointCloudAE(emb_dim, n_pts)
-  estimator.cuda()
-  estimator.load_state_dict(torch.load(model_path))
-  estimator.eval()
-  
-  print("Generating image lists")
-  create_img_list(data_dir)
-  print("Image lists generated...\n")
-  print("Generating Camera Train data...")
-  annotate_camera_train(data_dir, estimator)
-  print("Generating Real Train data...")
-  annotate_real_train(data_dir, estimator)
-  print("Generating Camera Val data...")
-  annotate_test_data(data_dir, estimator, 'CAMERA', 'val')
-  print("Generating Real Test data...")
-  annotate_test_data(data_dir, estimator, 'Real', 'test')
+    model_path = os.path.join(data_dir, 'auto_encoder_model', 'model_50.pth')
+    estimator = PointCloudAE(emb_dim, n_pts)
+    estimator.cuda()
+    # estimator.load_state_dict(torch.load(model_path))
+    estimator.eval()
+
+    # print("Generating image lists")
+    # create_img_list(data_dir)
+    print("Image lists generated...\n")
+    # print("Generating Camera Train data...")
+    # annotate_camera_train(data_dir, estimator)
+    print("Generating Real Train data...")
+    annotate_real_train(data_dir, estimator)
+    # print("Generating Camera Val data...")
+    # annotate_test_data(data_dir, estimator, 'CAMERA', 'val')
+    # print("Generating Real Test data...")
+    # annotate_test_data(data_dir, estimator, 'Real', 'test')
